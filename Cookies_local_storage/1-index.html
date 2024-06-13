@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ex0</title>
+    <title>Ex1</title>
     <script type="text/javascript" src="../src/index.js"></script>
 </head>
 
@@ -18,14 +18,20 @@
     <button onclick="showCookies()">Show the cookies</button>
     <script>
         function setCookies() {
-            document.cookie = "firstname=" + document.getElementById("firstname").value;
-            document.cookie = "email=" + document.getElementById("email").value
+            var firstnameValue = document.getElementById("firstname").value;
+            var emailValue = document.getElementById("email").value;
+
+            var date = new Date();
+            date.setDate(date.getDate() + 10);
+
+            document.cookie = "firstname=" + firstnameValue + "; expires=" + date.toUTCString() + "; path=/";
+            document.cookie = "email=" + emailValue + "; expires=" + date.toUTCString() + "; path=/";
         }
 
         function showCookies() {
-            let cookies = document.cookie.split(";");
-            let p = document.createElement("p");
-            let txt = document.createTextNode("Cookies: " + cookies[0].split("=")[1] + ", " + cookies[1].split("=")[1]);
+            var cookies = document.cookie.split(";");
+            var p = document.createElement("p");
+            var txt = document.createTextNode("Cookies: " + cookies[0].split("=")[1] + ", " + cookies[1].split("=")[1]);
             p.appendChild(txt);
             document.body.appendChild(p);
         }
